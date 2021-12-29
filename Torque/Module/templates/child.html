@@ -1,0 +1,30 @@
+{% extends "base.html" %} 
+{% block content %}
+  <div> 
+    <p style="font-size:12px;color:gray;margin:0">For SAS report <a href="https://viya.fs.local/links/resources/report?uri=%2Freports%2Freports%2F1c00b0a5-b156-49af-b11f-03981fbfa986">Click here!</a></p>
+    <hr style="margin:0" class="solid">
+    <h2 style="color:red;margin:0">Hipot Torque History</h2>
+      <hr style="margin:0" class="solid">
+      <br>
+      <!-- <p style="font-size:20px;color:blue;margin:0">DMT1</p> -->
+      <hr style="margin:0" class="solid">
+      {% for image in hipot_pictures %}
+        <br>
+          <p> {{ image.title }} </p> 
+          <img src="cid:{{image.cid}}">
+        </br>
+      {% endfor %}
+    <h2 style="color:red;margin:0">Interlayer Torque History</h2>
+      <hr style="margin:0" class="solid">
+      <br>
+      <!-- <p style="font-size:20px;color:blue;margin:0">DMT1</p> -->
+      <hr style="margin:0" class="solid">
+      {% for image in il_pictures%}
+        <br>
+          <p> {{ image.title }} </p> 
+          <img src="cid:{{image.cid}}">
+        </br>
+      {% endfor %}
+  </div>
+{% endblock %}
+
