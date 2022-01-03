@@ -27,8 +27,9 @@ def getData(serverName, databaseName, sqlFile, dstart, dstop):
     for j in range(len(resultY.index)):
         if resultX['EquipmentName'][i] == resultY['EquipmentName'][j] and resultX['Device'][i] == resultY['Device'][j]:
             if resultX['MaxValue'][i] > resultY['MaxValue'][j] + 70:
-                resultX['MaxValue'][i] = resultY['MaxValue'][j]
+                # resultX['MaxValue'][i] = resultY['MaxValue'][j]
+                resultX.loc['MaxValue',i] = resultY['MaxValue'][j]
             if resultX['MinValue'][i] > resultY['MinValue'][j] + 70:
-                resultX['MinValue'][i] = resultY['MinValue'][j]
-
+                # resultX['MinValue'][i] = resultY['MinValue'][j]
+                resultX.loc['MinValue',i] = resultY['MinValue'][j]
   return resultX

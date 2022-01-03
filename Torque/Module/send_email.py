@@ -31,15 +31,23 @@ def generate_email(mail_user, to_list, img_path):
 
   msgAlternative = MIMEMultipart('alternative')
   msg.attach(msgAlternative)
-  hipot_img_dict = get_data(img_path + '/sim')
-  il_img_dict = get_data(img_path + '/int')
+  dmt1_hipot_img = get_data('Figure\Sim\\' + img_path[0])
+  dmt1_il_img = get_data('Figure\Int\\' + img_path[0])
+  dmt2_hipot_img = get_data('Figure\Sim\\' + img_path[1])
+  dmt2_il_img = get_data('Figure\Int\\' + img_path[1])
+
   template = env.get_template('child.html')
-  html = template.render(hipot_pictures=hipot_img_dict, il_pictures=il_img_dict)
+  # html = template.render(dmt1_hipot_img=dmt1_hipot_img, dmt1_il_img=dmt1_il_img)
+  html = template.render(dmt1_hipot_img=dmt1_hipot_img, dmt1_il_img=dmt1_il_img, dmt2_hipot_img=dmt2_hipot_img, dmt2_il_img=dmt2_il_img)
   msgHtml = MIMEText(html, 'html')
   msgAlternative.attach(msgHtml)
-  for img in hipot_img_dict:
+  for img in dmt1_hipot_img:
     msg.attach(attach_image(img))
-  for img in il_img_dict:
+  for img in dmt1_il_img:
+    msg.attach(attach_image(img))
+  for img in dmt2_hipot_img:
+    msg.attach(attach_image(img))
+  for img in dmt2_il_img:
     msg.attach(attach_image(img))
   return msg
 
