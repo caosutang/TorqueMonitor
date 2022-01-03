@@ -15,9 +15,9 @@ sqlServer1 = 'dmt1messqlods'
 sqlServer2 = 'dmt2messqlods' 
 
 print("Start read the lastest data", datetime.now().strftime("%d/%m/%Y, %H:%M:%S"))
-dmt1_lastestData = pd.read_csv('./data/DMT1/lastestData.csv', parse_dates=['Timestamp'])
+dmt1_lastestData = pd.read_csv('./Data/DMT1/lastestData.csv', parse_dates=['Timestamp'])
 dmt1_data= dmt1_lastestData.drop(dmt1_lastestData.columns[0], axis=1)
-dmt2_lastestData = pd.read_csv('./data/DMT2/lastestData.csv', parse_dates=['Timestamp'])
+dmt2_lastestData = pd.read_csv('./Data/DMT2/lastestData.csv', parse_dates=['Timestamp'])
 dmt2_data= dmt2_lastestData.drop(dmt2_lastestData.columns[0], axis=1)
 
 print("Start getting data", datetime.now().strftime("%d/%m/%Y, %H:%M:%S"))
@@ -46,7 +46,7 @@ print("Completed drawing data DMT2", datetime.now().strftime("%d/%m/%Y, %H:%M:%S
 
 print("Start send email", datetime.now().strftime("%d/%m/%Y, %H:%M:%S"))
 outlook_from = 'MESAutoReport@firstsolar.com'
-outlook_to = ['minhhuy.chu@firstsolar.com','hoainam.truong@firstsolar.com']
+outlook_to = ['minhhuy.chu@firstsolar.com']
 # outlook_to = ['minhhuy.chu@firstsolar.com','hoainam.truong@firstsolar.com','vanthanh.tran@firstsolar.com']
 img_path = [DMT1_img_path, DMT2_img_path]
 print("Creating email message...", datetime.now().strftime("%d/%m/%Y, %H:%M:%S"))
@@ -58,5 +58,6 @@ Email.send_email(dmt_email_msg, outlook_from,'', outlook_to, 'fsbridge.fs.local'
 print("Completed task", datetime.now().strftime("%d/%m/%Y, %H:%M:%S"))
 
 print("Start to export new data and update the lastest data!", datetime.now().strftime("%d/%m/%Y, %H:%M:%S"))
-Exdata.update_data('./data/DMT1/', resultDmt1, dmt1_data, dstop)
+Exdata.update_data('./Data/DMT1/', resultDmt1, dmt1_data, dstop)
+Exdata.update_data('./Data/DMT2/', resultDmt2, dmt2_data, dstop)
 print("End export data!",  datetime.now().strftime("%d/%m/%Y, %H:%M:%S"))
